@@ -1,5 +1,5 @@
 # Problem: Food Lines
-# Judge: dmoj
+# Judge: DMOJ
 # ID: lkp18c2p1
 
 
@@ -19,13 +19,17 @@ def get_data():
 
 def solve(N, M, n_lines):
     for _ in range(M):
-        min_idx, min_line = 0, float("inf")
-        for i, line in enumerate(n_lines):
-            if line < min_line:
-                min_line = line
-                min_idx = i
+        min_idx = shortest_line_index(n_lines)
         print(str(n_lines[min_idx]))
         n_lines[min_idx] += 1
+
+def shortest_line_index(n_lines):
+    min_idx, min_line = 0, float("inf")
+    for i, line in enumerate(n_lines):
+        if line < min_line:
+            min_line = line
+            min_idx = i
+    return min_idx
 
 
 if __name__ == "__main__":
