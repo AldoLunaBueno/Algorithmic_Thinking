@@ -15,7 +15,7 @@ parametrize = pytest.mark.parametrize
                 ])
 def test_one_line(capsys, N_M, n_lines, expected):
     sys.stdin = io.StringIO(f"{N_M}\n{n_lines}")
-    food_lines.solve() # print solution
+    food_lines.main() # print solution
     out, err = capsys.readouterr()
     assert out == expected
 
@@ -31,7 +31,7 @@ def test_one_line(capsys, N_M, n_lines, expected):
                 ])
 def test_two_lines(capsys, N_M, n_lines, expected):
     sys.stdin = io.StringIO(f"{N_M}\n{n_lines}")
-    food_lines.solve() # print solution
+    food_lines.main() # print solution
     out, err = capsys.readouterr()
     assert out == expected
 
@@ -41,6 +41,6 @@ def test_two_lines(capsys, N_M, n_lines, expected):
                 ])
 def test_n_lines(capsys, N_M, n_lines, expected):
     sys.stdin = io.StringIO(f"{N_M}\n{n_lines}")
-    food_lines.solve() # print solution
+    food_lines.main() # print solution
     out, err = capsys.readouterr()
     assert out == expected
