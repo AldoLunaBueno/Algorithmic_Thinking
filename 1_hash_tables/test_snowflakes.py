@@ -8,8 +8,8 @@ parametrize = pytest.mark.parametrize
 
 # Two possible expected printed values
 # for snowflakes.main()
-TWIN_MSG = "Twin snowflakes found."
-NO_TWIN_MSG = "No two snowflakes are alike."
+TWIN_MSG = "Twin snowflakes found.\n"
+NO_TWIN_MSG = "No two snowflakes are alike.\n"
 
 @parametrize("n, n_snowflakes", [
     ("1", ("0 0 0 0 0 0", ))
