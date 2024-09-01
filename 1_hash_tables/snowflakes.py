@@ -22,10 +22,11 @@ def get_data():
         n_lines.append(line)
     return n, n_lines
 
-def solve(n, n_lines):
-    for i in range(n):
-        for j in range(i+1, n):
-            if identical(n_lines[i], n_lines[j]):
+# TIME: O(n**2)
+def solve(n, n_lines): 
+    for i in range(n): # time: O(n**2)
+        for j in range(i+1, n): # time: O(n)
+            if identical(n_lines[i], n_lines[j]): # time: O(1), because ARMS = cte.
                 print(TWIN_MSG)
                 return
     print(NO_TWIN_MSG)
