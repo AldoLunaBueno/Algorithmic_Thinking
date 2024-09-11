@@ -14,6 +14,20 @@ def _test(capsys: pytest.CaptureFixture[str], input, expected):
     out, err = capsys.readouterr()
     assert out == expected
 
+@parametrize("input, expected", 
+             [
+                 (("2", "3 1 2 3", "1 4"), "4\n"),
+             ])
+def test_simple(capsys: pytest.CaptureFixture[str], input, expected):
+    _test(capsys, input, expected)
+
+@parametrize("input, expected", 
+             [
+                 (("2", "2 1 2", "2 3 4"), "2\n"),
+             ])
+def test_bills_selected_are_not_returned(capsys: pytest.CaptureFixture[str], input, expected):
+    _test(capsys, input, expected)
+
 @parametrize("input, expected",
              [
                  (("2", "16 6 63 16 82 25 2 43 5 17 10 56 85 38 15 32 91", "1 57"), "169\n"), 
