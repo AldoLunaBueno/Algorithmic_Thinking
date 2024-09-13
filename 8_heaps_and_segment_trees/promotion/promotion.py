@@ -5,14 +5,14 @@
 from typing import List
 # from algorithms.brute_force import solve_by_brute_force
 # from algorithms.heapq import solve_using_heapq
-from algorithms.heapq_v2 import solve_using_heapq
+from algorithms.own_heap import solved_using_own_heap
 import sys
 
 
 def main():
     receipts = get_data()
     # solve_by_brute_force(receipts)
-    solve_using_heapq(receipts)
+    solved_using_own_heap(receipts)
 
 def get_data() -> List[List[int]]:
     n = int(sys.stdin.readline().strip())
