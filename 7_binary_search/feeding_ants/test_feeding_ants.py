@@ -1,10 +1,10 @@
 import pytest
 import sys
 import io
-
 import feeding_ants
 
 parametrize = pytest.mark.parametrize
+ALLOWED_ABSOLUTE_ERR = 0.001
 
 @parametrize("input, expected", [
     #(("6", "1 2 20 0", "1 3 50 0", "1 4 30 1", "4 5 50 0", "4 6 50 0", "-1 2 9 -1 7 8"), "")
@@ -20,4 +20,5 @@ def _test(capsys: pytest.CaptureFixture[str], input, expected):
     sys.stdin = io.StringIO(input)
     feeding_ants.main()
     out, err = capsys.readouterr()
-    assert out == expected + "\n"
+    out, expected = float(out), float(expected)
+    assert abs(out - expected) <= ALLOWED_ABSOLUTE_ERR
