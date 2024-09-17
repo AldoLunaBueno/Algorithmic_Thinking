@@ -1,6 +1,7 @@
+package other_solutions;
+
 import java.util.Arrays;
 import java.util.Scanner;
-import java.util.concurrent.Callable;
 import java.util.function.Function;
 
 public class Solution {
@@ -66,6 +67,7 @@ public class Solution {
             rocks[i] = rock;
         }
         rocks[n+1] = L;
+        n += 2; // rocks[0] and rocks[L] added
         scanner.close();
     }
 }

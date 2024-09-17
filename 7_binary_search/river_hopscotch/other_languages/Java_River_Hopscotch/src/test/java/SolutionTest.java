@@ -1,7 +1,7 @@
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.*;
@@ -13,7 +13,7 @@ class SolutionTest {
     void testMain(String input, String expected) throws Exception {
         provideInput(input);
         OutputStream out = receiveOutput();
-        Solution.main(null);
+        Main.main(null);
         String actual = out.toString();
         assertEquals(expected, actual);
     }
