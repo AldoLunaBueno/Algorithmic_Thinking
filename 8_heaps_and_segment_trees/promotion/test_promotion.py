@@ -11,14 +11,14 @@ parametrize = pytest.mark.parametrize
                  (("2", "3 1 2 3", "1 4"), "4\n"),
              ])
 def test_simple(capsys: pytest.CaptureFixture[str], input, expected):
-    u_test(capsys, input, expected)
+    _test(capsys, input, expected)
 
 @parametrize("input, expected", 
              [
                  (("2", "2 1 2", "2 3 4"), "2\n"),
              ])
 def test_bills_selected_are_not_returned(capsys: pytest.CaptureFixture[str], input, expected):
-    u_test(capsys, input, expected)
+    _test(capsys, input, expected)
 
 @parametrize("input, expected",
              [
@@ -27,9 +27,9 @@ def test_bills_selected_are_not_returned(capsys: pytest.CaptureFixture[str], inp
                  
              ])
 def test_complex(capsys, input, expected):
-    u_test(capsys, input, expected)
+    _test(capsys, input, expected)
 
-def u_test(capsys, input, expected):
+def _test(capsys, input, expected):
     input = "\n".join(input) + "\n"
     sys.stdin = io.StringIO(input)
     promotion.main()
