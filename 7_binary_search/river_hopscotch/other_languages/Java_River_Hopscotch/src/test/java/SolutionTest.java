@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 class SolutionTest {
     @ParameterizedTest
     @MethodSource("testMain")
-    void testMain(String input, String expected) throws IOException {
+    void testMain(String input, String expected) throws Exception {
         provideInput(input);
         OutputStream out = receiveOutput();
         Solution.main(null);
