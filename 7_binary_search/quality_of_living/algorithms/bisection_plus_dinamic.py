@@ -35,17 +35,11 @@ def can_make_quality(quality: int, r: int, c: int, h: int, w: int, q: Matrix):
     return False
 
 def prefix_sum_2d(r: int, c: int, matrix: Matrix) -> Matrix:
-    acc: Matrix = [[0]*c for _ in range(r)]
+    # c+1 and r+1: don't worry about the boundaries
+    acc: Matrix = [[0]*(c+1) for _ in range(r+1)]
     for i in range(r):
         for j in range(c):
-            if i > 0 and j > 0: # in general
-                acc[i][j] = matrix[i][j] + acc[i][j-1] + acc[i-1][j] - acc[i-1][j-1]
-            elif i == 0 and j != 0: # first row
-                acc[0][j] = matrix[0][j] + acc[0][j-1]
-            elif j == 0 and i != 0: # first col
-                acc[i][0] = matrix[i][0] + acc[i-1][0]
-            elif i == 0 and j == 0: # first element of matrix
-                acc[i][j] = matrix[i][j]
+            acc[i+1][j+1] = matrix[i][j] + acc[i+1][j] + acc[i][j+1] - acc[i][j]
     return acc
 
 # Dinamic Programming
@@ -57,16 +51,10 @@ def prefix_sum_2d(r: int, c: int, matrix: Matrix) -> Matrix:
 #         0 0 * bottom_row  + 0
 #         0 0 0 0 0 0 0 0 0 0 0
 def rectangle_ones(top_row: int, left_col: int, h: int, w: int, acc: Matrix):
+    top_row += 1
+    left_col += 1
     bottom_row = top_row + h - 1
     right_col = left_col + w - 1
-    if top_row > 0 and left_col > 0:
-        return (acc[bottom_row][right_col] 
-                - acc[bottom_row][left_col-1] 
-                - acc[top_row-1][right_col] 
-                + acc[top_row-1][left_col-1])
-    elif top_row == 0 and left_col > 0:
-        return acc[bottom_row][right_col] - acc[bottom_row][left_col-1]
-    elif top_row > 0 and left_col == 0:
-        return acc[bottom_row][right_col] - acc[top_row-1][right_col]
-    elif top_row == 0 and left_col == 0:
-        return acc[bottom_row][right_col]
+    return (acc[bottom_row][right_col] 
+            - acc[bottom_row][left_col-1] - acc[top_row-1][right_col] 
+            + acc[top_row-1][left_col-1])
