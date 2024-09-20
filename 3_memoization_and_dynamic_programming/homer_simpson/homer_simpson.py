@@ -1,4 +1,7 @@
-from algorithms.my_solution import solve
+# Homer Simpson (Burger Fever)
+# UVa problem 10465
+
+from algorithms.memoization import solve
 
 def main():
     cases = get_data()
