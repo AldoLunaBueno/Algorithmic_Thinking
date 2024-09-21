@@ -1,7 +1,7 @@
 # Homer Simpson (Burger Fever)
 # UVa problem 10465
 
-from algorithms.memoization import solve
+from algorithms.memo_and_dynamic import solve
 
 def main():
     cases = get_data()
