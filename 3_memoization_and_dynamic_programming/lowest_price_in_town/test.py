@@ -2,7 +2,7 @@ import pytest
 import sys
 import io
 
-from lowest_price import main
+from answer import main
 
 def load_test_cases(file_name):
     # Read the file and separate the test cases by '==='
