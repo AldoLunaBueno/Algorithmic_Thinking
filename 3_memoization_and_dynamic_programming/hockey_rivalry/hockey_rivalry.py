@@ -1,7 +1,7 @@
 # Geese vs. Hawks (Hockey Rivalry)
 # DMOJ problem cco18p1
 
-from algorithms.memoization import solve
+from algorithms.dynamic_prog import solve
 
 def main():
     n, outcome_1, points_1, outcome_2, points_2 = get_data()
