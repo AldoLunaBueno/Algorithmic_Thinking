@@ -13,18 +13,18 @@ class Node:
         return value_l + value_r
 
 def tree_sum_by_iteration(root: Node):
-    result = 0
+    result = 0 # value accumulator
     stack: List[Node] = [None]
     curr_node: Node = root
     while True:
         if curr_node.left == curr_node.right == None: # leaf
             result += curr_node.value
-            curr_node = stack.pop()
-            if curr_node == None:
+            curr_node = stack.pop() # next subtree to process
+            if curr_node == None: # end of stack
                 break
             continue
-        stack.append(curr_node.left)
-        curr_node = curr_node.right
+        stack.append(curr_node.left) # pending subtree
+        curr_node = curr_node.right # next subtree to process
         
     return result
 
