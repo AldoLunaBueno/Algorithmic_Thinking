@@ -5,6 +5,8 @@
 # Maximum single-case runtime: 0.031s
 # Final score: 10/10 (5.0/5 points)
 
+# time complexity: O(n), n := #nodes
+
 from typing import List, Tuple
 
 def main():
