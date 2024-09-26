@@ -71,9 +71,9 @@ def _text_to_tree(s: str, i: int) -> Tuple[Node, int]:
 
 def solve(trees: List[Node]):
     for tree in trees:
-        min_roads_to_traverse = tree.complete_traversal() - tree.depth()
+        min_walking = tree.complete_traversal() - tree.depth()
         total_candy = tree.sum()
-        print(min_roads_to_traverse, total_candy)
+        print(min_walking, total_candy)
 
 if __name__ == "__main__":
     main()
