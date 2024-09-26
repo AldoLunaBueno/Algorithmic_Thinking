@@ -23,7 +23,7 @@ def tree_sum_by_iteration(root: Node):
             if curr_node == None: # end of stack
                 break
             continue
-        stack.append(curr_node.left) # pending subtree
+        stack.append(curr_node.left) # store pending subtree
         curr_node = curr_node.right # next subtree to process
         
     return result
