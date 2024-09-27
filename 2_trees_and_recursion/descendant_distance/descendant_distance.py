@@ -10,6 +10,7 @@ class Node:
         if children == None:
             children = []
         self.children = children
+        self.score = 0
     
     def isleaf(self):
         return len(self.children) == 0
@@ -23,7 +24,13 @@ class Node:
         for child in self.children:
             result += child.__str__(level + 1)
         return result
-
+    
+    def preorder(self) -> List["Node"]:
+        result = [self]
+        for child in self.children:
+            result += child.preorder()
+        return result
+        
 def text_to_tree(text: str) -> Node:
     lines = text.split("\n")
     name_to_node: Dict[str, Node] = {}
@@ -41,7 +48,7 @@ def text_to_tree(text: str) -> Node:
             father.insert_child(name_to_node[child_name])
         all_fathers.add(father)
         all_children.update(set(father.children))
-    root = all_fathers - all_children      
+    root = all_fathers - all_children 
     return list(root)[0]
 
 def get_data():
@@ -58,15 +65,22 @@ def get_data():
     return trees, distances
 
 def solve(trees: List[Node], distances: List[int]):
-    for (tree, d) in zip(trees, distances):
-        print(score(tree, d))
+    for i, (tree, distance) in enumerate(zip(trees, distances)):
+        nodes = tree.preorder()
+        for i in range(len(nodes)):
+            nodes[i].score = score_one(nodes[i], distance)
+        sorted(nodes, key = lambda node: node.score, reverse=True)
+        print(nodes[0].score)
+        print(nodes[-1].score)
+        # for node in nodes[:3]:
+        #     print(node.name, node.score)        
 
-def score(tree: Node, distance: int, level: int = 0) -> int:
+def score_one(tree: Node, distance: int, level: int = 0) -> int:
     if level == distance:
         return 1
     result = 0
     for node in tree.children:
-        result += score(node, distance, level + 1)
+        result += score_one(node, distance, level + 1)
     return result
 
 if __name__ == "__main__":

@@ -1,4 +1,4 @@
-from typing import List, Dict
+from typing import List, Dict, Set
 
 class Node:
     def __init__(self, name: str, children: List["Node"] = None) -> None:
@@ -6,9 +6,13 @@ class Node:
         if children == None:
             children = []
         self.children = children
+        self.score = 0
     
     def insert_child(self, child: "Node"):
         self.children.append(child)
+
+    def isleaf(self):
+        return len(self.children) == 0
 
     def numb_nodes(self):
         if self.children == None:
@@ -17,6 +21,12 @@ class Node:
         for child in self.children:
             result += child.numb_nodes()
         return 1 + result
+        
+    def preorder(self) -> List["Node"]:
+        result = [self]
+        for child in self.children:
+            result += child.preorder()
+        return result
     
     def __str__(self, level = 0):
         result = "  " * level + self.name + "\n"
@@ -54,5 +64,18 @@ def text_to_tree(text: str) -> Node:
     root = all_fathers - all_children      
     return list(root)[0]
 
+def score_one(tree: Node, distance: int, level: int = 0) -> int:
+    if level == distance:
+        return 1
+    result = 0
+    for node in tree.children:
+        result += score_one(node, distance, level + 1)
+    return result
+
 family_tree = text_to_tree(text)
 print(family_tree)
+nodes = family_tree.preorder()
+
+for node in nodes:
+    node.score = score_one(node, 2)
+    print(node.score)
