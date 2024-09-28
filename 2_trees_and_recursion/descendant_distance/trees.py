@@ -36,13 +36,12 @@ class Node:
         
     
 
-text = """Lucas 1 Enzo
-Sana 2 Gabriel Lucas
-Enzo 2 Min Becky
-Kevin 2 Jad Cassie
-Amber 4 Vlad Sana Ashley Kevin
-Zara 1 Amber
-Vlad 1 Omar"""
+text = """A 2 B C	
+B 2 D E
+C 1 F
+E 2 G H
+F 2 I J
+H 2 K L"""
 
 def text_to_tree(text: str) -> Node:
     lines = text.split("\n")
@@ -72,10 +71,17 @@ def score_one(tree: Node, distance: int, level: int = 0) -> int:
         result += score_one(node, distance, level + 1)
     return result
 
+
+
 family_tree = text_to_tree(text)
 print(family_tree)
 nodes = family_tree.preorder()
 
 for node in nodes:
     node.score = score_one(node, 2)
-    print(node.score)
+
+nodes = sorted(nodes, key = lambda node: node.name)
+nodes = sorted(nodes, key = lambda node: node.score, reverse=True)
+
+for node in nodes:
+    print(node.name, node.score)

@@ -1,3 +1,19 @@
+1
+8 2
+Barney 2 Fred Ginger
+Ingrid 1 Nolan
+Cindy 1 Hal
+Jeff 2 Oliva Peter
+Don 2 Ingrid Jeff
+Fred 1 Kathy
+Andrea 4 Barney Cindy Don Eloise
+Hal 2 Lionel Mary
+---
+Tree 1:
+Andrea 5
+Don 3
+Cindy 2
+===
 3
 8 2
 Barney 2 Fred Ginger
@@ -38,3 +54,48 @@ Phil 1
 
 Tree 3:
 Phillip 5
+===
+1
+7 2
+Lucas 1 Enzo
+Zara 1 Amber
+Sana 2 Gabriel Lucas
+Enzo 2 Min Becky
+Kevin 2 Jad Cassie
+Amber 4 Vlad Sana Ashley Kevin
+Vlad 1 Omar
+---
+Tree 1:
+Amber 5
+Zara 4
+Lucas 2
+===
+1
+6 2
+A 2 B C	
+B 2 D E
+C 1 F
+E 2 G H 
+F 2 I J
+H 2 K L 
+---
+Tree 1:
+A 3
+B 2
+C 2
+E 2
+===
+1
+6 2
+E 2 G H
+F 2 I J
+B 2 D E 
+A 2 B C	
+H 2 K L
+C 1 F
+---
+Tree 1:
+A 3
+B 2
+C 2
+E 2

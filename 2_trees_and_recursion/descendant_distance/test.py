@@ -2,6 +2,7 @@ import pytest
 import subprocess
 import sys
 
+
 path_to_script = "descendant_distance.py"
 path_to_test_cases = "test_cases.txt"
 

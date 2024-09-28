@@ -1,8 +1,18 @@
 from typing import List, Dict, Set
 
+import sys
+sys.setrecursionlimit(1500)
+
+# Resources: 0.114s, 13.40 MB
+# Maximum single-case runtime: 0.114s
+# Final score: 100/100 (10.0/10 points)
+
 def main():
     trees, distances = get_data()
     solve(trees, distances)
+    # tree = trees[0]
+    # print(tree)
+    # print(len(tree.preorder()))
 
 class Node:
     def __init__(self, name: str, children: List["Node"] = None) -> None:
@@ -57,7 +67,11 @@ def get_data():
     n = int(input())
     for _ in range(n):
         m, d = [int(x) for x in input().split(" ")]
-        text = [input() for _ in range(m)]
+        
+        # My 1 hour error was due to relying on data cleanliness
+        # The strip() safed the day
+        text = [input().strip() for _ in range(m)]
+        
         text = "\n".join(text)
         tree = text_to_tree(text)
         trees.append(tree)
@@ -65,15 +79,32 @@ def get_data():
     return trees, distances
 
 def solve(trees: List[Node], distances: List[int]):
-    for i, (tree, distance) in enumerate(zip(trees, distances)):
+    for index, (tree, distance) in enumerate(zip(trees, distances), 1):
         nodes = tree.preorder()
-        for i in range(len(nodes)):
-            nodes[i].score = score_one(nodes[i], distance)
-        sorted(nodes, key = lambda node: node.score, reverse=True)
-        print(nodes[0].score)
-        print(nodes[-1].score)
-        # for node in nodes[:3]:
-        #     print(node.name, node.score)        
+        selected_nodes: List[Node] = []
+        for node in nodes:
+            score = score_one(node, distance)
+            if score != 0:
+                node.score = score
+                selected_nodes.append(node)
+        nodes = selected_nodes
+
+        # The next multisort works because the sort stability 
+        # of the build-in sorted() method:
+
+        # sort on secondary key
+        nodes = sorted(nodes, key = lambda node: node.name)
+        # sort on primary key
+        nodes = sorted(nodes, key = lambda node: node.score, reverse=True)
+        
+        print(f"Tree {index}:")
+        i = 0
+        while i < len(nodes):
+            if i >= 3 and nodes[i].score != nodes[i-1].score:
+                break
+            print(nodes[i].name, nodes[i].score)
+            i += 1
+        print()
 
 def score_one(tree: Node, distance: int, level: int = 0) -> int:
     if level == distance:
