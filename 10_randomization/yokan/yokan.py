@@ -2,13 +2,15 @@
 # DMOJ problem dmpg15g6
 
 # Resources: ---, 61.64 MB
-# Final score: 40/100 (6.8/17 points)
+# Final score: 60/100 (10.2/17 points)
 
-from typing import List, Callable
+from typing import List
 from math import ceil
-from random import randint
+from random import sample
+from functools import wraps
+from collections import defaultdict
 
-MAX_ATTEMPTS = 60
+MAX_ATTEMPTS = 20
 
 def main():
     n, m, yokan, queries = get_data()
@@ -16,7 +18,7 @@ def main():
 
 def get_data():
     n, m = [int(x) for x in input().strip().split(" ")]
-    yokan = [None] + [int(x) for x in input().strip().split(" ")]
+    yokan = [0] + [int(x) for x in input().strip().split(" ")]
     q = int(input())
     queries = []
     for _ in range(q):
@@ -25,12 +27,8 @@ def get_data():
     return n, m, yokan, queries
 
 def solve(n, m, yokan, queries):
-    pieces_by_flavor: List[List[int]] = [None] * (m+1)
+    pieces_by_flavor = defaultdict(list)
     for i, flavor in enumerate(yokan):
-        if flavor == None:
-            continue
-        if pieces_by_flavor[flavor] == None:
-            pieces_by_flavor[flavor] = []
         pieces_by_flavor[flavor].append(i)
       
     for l, r in queries:
@@ -38,71 +36,33 @@ def solve(n, m, yokan, queries):
         one_third = ceil(width/3)
         two_third = ceil(2*width/3)
         happy_count = 0
-        flavors_tried = set()
+        pieces_sample = sample(range(l, r+1), min(width, MAX_ATTEMPTS))
+        rand_flavors = set([yokan[i] for i in pieces_sample])
 
-        for _ in range(MAX_ATTEMPTS):
-            rand_piece = randint(l, l+width-1)
-            flavor = yokan[rand_piece]
+        for flavor in rand_flavors:
             slab_by_flavor = pieces_by_flavor[flavor]
-
-            if len(flavors_tried) == m:
-                break
-            elif flavor in flavors_tried:
-                continue
-            
-            flavors_tried.add(flavor)
-
-            li = binary_search(slab_by_flavor, l, high=True)
+            li = binary_search(slab_by_flavor, l, to_right=True)
             ri = binary_search(slab_by_flavor, r)  
             one_flavor_width = ri-li+1
             if one_flavor_width >= two_third:
                 happy_count = 2
             elif one_flavor_width >= one_third:
                 happy_count += 1
-            
             if happy_count == 2:
                 break
 
         print("YES" if happy_count == 2 else "NO")
 
-def binary_search(arr: List, element, high = False):
-    if element < arr[0]:
-        return 0 if high else -1
-    if element > arr[-1]:
-        return len(arr) if high else len(arr)-1
-
-    def f(index): 
-        if arr[index] > element:
-            return 1
-        elif arr[index] < element:
-            return -1
+def binary_search(arr: List, element, to_right=False):
+    low, high = -1, len(arr)
+    while high - low > 1:
+        mid = (low + high) // 2
+        if arr[mid] > element:
+            high = mid
         else:
-            return 0
-    if high:
-        i = discrete_bisection_method(f, 0, len(arr)-1)
-        if arr[i] < element:
-            return i+1
-        else:
-            return i
-    return discrete_bisection_method(f, 0, len(arr)-1)
-
-def discrete_bisection_method(f: Callable, low: int, high: int):
-    if f(low) * f(high) > 0:
-        Exception("Invalid interval")
-    if f(low) == 0:
-        return low
-    if f(high) == 0:
-        return high
-    diff = high - low
-    while diff > 1:
-        c = low + (high-low)//2
-        if f(low) * f(c) < 0:
-            high = c
-        elif f(c) * f(high) < 0:
-            low = c
-        elif f(c) == 0:
-            return c
-        diff = high - low
+            low = mid
+    if to_right and (low == -1 or arr[low] < element):
+        return low + 1
     return low
 
 if __name__ == "__main__":
