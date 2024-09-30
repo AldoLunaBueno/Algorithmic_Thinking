@@ -1,29 +1,26 @@
 # Yokan
 # DMOJ problem dmpg15g6
 
-# Resources: ---, 61.64 MB
+# Resources: ---, 117.94 MB
 # Final score: 60/100 (10.2/17 points)
 
 from typing import List
-from math import ceil
 from random import sample
-from functools import wraps
 from collections import defaultdict
+from sys import stdin
 
-MAX_ATTEMPTS = 20
+MAX_ATTEMPTS = 7
 
 def main():
     n, m, yokan, queries = get_data()
     solve(n, m, yokan, queries)
 
 def get_data():
-    n, m = [int(x) for x in input().strip().split(" ")]
-    yokan = [0] + [int(x) for x in input().strip().split(" ")]
-    q = int(input())
-    queries = []
-    for _ in range(q):
-        query = [int(x) for x in input().strip().split(" ")]
-        queries.append(query)
+    all_data = stdin.read().split('\n')
+    n, m = [int(x) for x in all_data[0].split(" ")]
+    yokan = [0] + [int(x) for x in all_data[1].split(" ")]
+    q = int(all_data[2])
+    queries = [[int(x) for x in all_data[i].split(" ")] for i in range(3, q+3)]
     return n, m, yokan, queries
 
 def solve(n, m, yokan, queries):
@@ -33,27 +30,32 @@ def solve(n, m, yokan, queries):
       
     for l, r in queries:
         width = r-l+1
-        one_third = ceil(width/3)
-        two_third = ceil(2*width/3)
+        one_third = width/3
         happy_count = 0
         pieces_sample = sample(range(l, r+1), min(width, MAX_ATTEMPTS))
         rand_flavors = set([yokan[i] for i in pieces_sample])
 
         for flavor in rand_flavors:
             slab_by_flavor = pieces_by_flavor[flavor]
-            li = binary_search(slab_by_flavor, l, to_right=True)
-            ri = binary_search(slab_by_flavor, r)  
-            one_flavor_width = ri-li+1
-            if one_flavor_width >= two_third:
+            one_flavor_width = flavor_range(l, r, slab_by_flavor)
+            if one_flavor_width >= 2 * one_third:
                 happy_count = 2
+                break
             elif one_flavor_width >= one_third:
                 happy_count += 1
-            if happy_count == 2:
-                break
+                if happy_count == 2:
+                    break
 
         print("YES" if happy_count == 2 else "NO")
 
-def binary_search(arr: List, element, to_right=False):
+def flavor_range(l, r, arr: List):
+    li = binary_search(l, arr)
+    if li == -1 or arr[li] < l:
+        li += 1
+    ri = binary_search(r, arr)
+    return ri - li + 1
+
+def binary_search(element, arr: List):
     low, high = -1, len(arr)
     while high - low > 1:
         mid = (low + high) // 2
@@ -61,8 +63,6 @@ def binary_search(arr: List, element, to_right=False):
             high = mid
         else:
             low = mid
-    if to_right and (low == -1 or arr[low] < element):
-        return low + 1
     return low
 
 if __name__ == "__main__":
