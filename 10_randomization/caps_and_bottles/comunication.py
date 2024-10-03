@@ -25,7 +25,7 @@ def non_blocking_communicate(proc, inputs):
             try:
                 line = output_queue.get_nowait()  # Non-blocking get
             except Empty:
-                time.sleep(0.1)  # Small delay before retrying
+                time.sleep(0.01)  # Small delay before retrying
                 continue  # No output yet, continue waiting for prompt
             else:
                 line_decoded = line.decode()
@@ -45,7 +45,7 @@ def non_blocking_communicate(proc, inputs):
             line = output_queue.get_nowait()
             yield line.decode()
         except Empty:
-            time.sleep(0.1)  # Give some time for the remaining output to appear
+            time.sleep(0.01)  # Give some time for the remaining output to appear
 
     proc.wait()
     thread.join()
@@ -57,7 +57,7 @@ def generate_inputs():
     names = ["Aldo", "Briggit", "Silvia", "Marly", "exit"]
     for name in names:
         yield '{}\n'.format(name).encode()
-        time.sleep(0.2)
+        time.sleep(0.01)
 
 for line in non_blocking_communicate(proc, generate_inputs()):
     print(f"Proceso hijo dice: {repr(line)}")
