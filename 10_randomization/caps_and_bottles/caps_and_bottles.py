@@ -1,12 +1,17 @@
 # Caps and Bottles (Bottle Caps)
 # DMOJ problem cco09p4
 
-from time import sleep
+from algorithms.brute_force import solve
+
 
 def main():
-    n = int(input())
-    sleep(1)
-    print("1 1 1")
+    n = get_data()
+    solve(n)
+
+def get_data():
+    n = int(input().strip())
+    return n
+
 
 if __name__ == "__main__":
     main()
