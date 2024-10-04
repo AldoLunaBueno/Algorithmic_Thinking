@@ -3,6 +3,7 @@ Matrix = List[List[int]]
 
 # Resources: 6.761s, 289.61 MB
 # Final score: 80/100 (12.0/15 points)
+# MLE (Memory Limit Exceeded)
 
 # main() function was optimized with sys.stdin.readline() 
 # instead of input() built-in function
