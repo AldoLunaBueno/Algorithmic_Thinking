@@ -2,6 +2,7 @@ import pytest
 import subprocess
 import sys
 
+# PATHS ARE ALL YOU NEED TO CHANGE:
 PATH_TO_SCRIPT = "script_to_test.py"
 PATH_TO_TEST_CASES = "test_cases.txt"
 
