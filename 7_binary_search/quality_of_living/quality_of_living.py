@@ -2,6 +2,7 @@
 # DMOJ problem ioi10p3
 
 from typing import List
+from sys import stdin
 from algorithms.bisection_plus_dinamic import solve
 
 def main():
@@ -10,9 +11,9 @@ def main():
 
 def get_data():
     q: List[List[int]] = []
-    r, c, h, w = [int(x) for x in input().split(" ")]    
+    r, c, h, w = [int(x) for x in stdin.readline().split(" ")]    
     for _ in range(r):
-        row = [int(x) for x in input().split(" ")]
+        row = [int(x) for x in stdin.readline().split(" ")]
         q.append(row)
     return r, c, h, w, q
 

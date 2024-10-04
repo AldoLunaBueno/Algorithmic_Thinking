@@ -1,8 +1,12 @@
 from typing import List, Callable
 Matrix = List[List[int]]
 
-# Resources: ---, 259.77 MB
-# Final score: 60/100 (9.0/15 points)
+# Resources: 6.761s, 289.61 MB
+# Final score: 80/100 (12.0/15 points)
+
+# main() function was optimazed with sys.stdin.readline() 
+# instead of input() built-in function
+
 def solve(r: int, c: int, h: int, w: int, q: Matrix):
     min_quality = h*w//2
     max_quality = r*c + 1 - h*w//2
