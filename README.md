@@ -71,3 +71,6 @@ text = [input().strip() for _ in range(m)]
 nodes = sorted(nodes, key = lambda node: node.name)
 # sort on primary key
 nodes = sorted(nodes, key = lambda node: node.score, reverse=True)
+
+
+all_data = stdin.read().split('\n')

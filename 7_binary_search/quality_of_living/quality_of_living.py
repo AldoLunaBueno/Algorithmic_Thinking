@@ -3,18 +3,16 @@
 
 from typing import List
 from sys import stdin
-from algorithms.bisection_plus_dinamic import solve
+from algorithms.bisection_plus_dynamic_memory_friendly import solve
 
 def main():
     r, c, h, w, q = get_data()
     solve(r, c, h, w, q)
 
 def get_data():
-    q: List[List[int]] = []
-    r, c, h, w = [int(x) for x in stdin.readline().split(" ")]    
-    for _ in range(r):
-        row = [int(x) for x in stdin.readline().split(" ")]
-        q.append(row)
+    r, c, h, w = tuple((int(x) for x in stdin.readline().split(" ")))
+    q = [[int(x) for x in stdin.readline().split(" ")] for _ in range(r)]
+    stdin.close()
     return r, c, h, w, q
 
 if __name__ == "__main__":
