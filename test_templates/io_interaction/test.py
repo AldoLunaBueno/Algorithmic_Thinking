@@ -2,11 +2,14 @@ import pytest
 from communication_inter import Communication
 from time import time
 
-PATH_TO_SCRIPT = "caps_and_bottles.py"
-PATH_TO_TEST_CASES = "interactive_test_cases.txt"
+
+PATH_TO_SCRIPT = "script_to_test.py"
+PATH_TO_TEST_CASES = "test_cases.txt"
 TIMEOUT = 5
 
+# THIS IS WHERE YOU NEED TO CODE
 def _test_interaction(input_data: str, expected: str, interactive_data: str):
+    # Example of specific interaction
     MESSAGE_SIZE = 5
     output_lines = []
     caps, bottles = interactive_data.split("\n")
@@ -39,7 +42,9 @@ def _test_interaction(input_data: str, expected: str, interactive_data: str):
 
     # Compare the output with the expected result
     assert output == expected
-    
+
+# THIS IS ALWAYS THE SAME FOR THIS KIND OF TEST:
+
 def load_interactive_test_cases(file_name):
     # Read the file and separate the test cases by '==='
     with open(file_name, "r") as f:
