@@ -1,0 +1,31 @@
+case 1
+input
+data
+lines
+---
+case 1
+expected
+ouput
+lines
+---
+case 1
+data
+lines
+for
+interaction
+===
+case 2
+input
+data
+lines
+---
+case 2
+expected
+ouput
+lines
+---
+case 2
+data
+lines
+for
+interaction

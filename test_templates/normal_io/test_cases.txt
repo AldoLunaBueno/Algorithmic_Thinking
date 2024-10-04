@@ -1,0 +1,19 @@
+case 1
+data
+input
+lines
+---
+case 1
+expected
+output
+lines
+===
+case 2
+data
+input
+lines
+---
+case 2
+expected
+output
+lines
