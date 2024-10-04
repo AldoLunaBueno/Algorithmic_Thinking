@@ -4,7 +4,7 @@ Matrix = List[List[int]]
 # Resources: 6.761s, 289.61 MB
 # Final score: 80/100 (12.0/15 points)
 
-# main() function was optimazed with sys.stdin.readline() 
+# main() function was optimized with sys.stdin.readline() 
 # instead of input() built-in function
 
 def solve(r: int, c: int, h: int, w: int, q: Matrix):
