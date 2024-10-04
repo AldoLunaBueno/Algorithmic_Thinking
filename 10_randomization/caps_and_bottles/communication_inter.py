@@ -27,7 +27,7 @@ class Communication:
             child_script (str): Path to the child script to be executed by the subprocess.
         """
         self._delay = 0.00001
-        cmd = [sys.executable, child_script]
+        cmd = [sys.executable, "-u", child_script] # unbuffered mode
         self._proc = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         self._output_lines = Queue()
 

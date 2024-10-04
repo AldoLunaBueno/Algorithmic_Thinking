@@ -3,9 +3,8 @@
 # Final score: 100/100 (20.0/20 points)
 
 # The key optimization to pass all the test cases of the judge 
-# was use stdin.readline() instead of input(), 
-# but my interactive test doesn't work 
-# with that way of get the standard input.
+# was use stdin.readline() instead of input().
+# My test script now is capable of test this withouth crash.
 
 from typing import List
 from random import choice
