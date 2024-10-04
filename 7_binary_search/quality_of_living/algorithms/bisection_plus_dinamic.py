@@ -46,7 +46,7 @@ def prefix_sum_2d(r: int, c: int, matrix: Matrix) -> Matrix:
             acc[i+1][j+1] = matrix[i][j] + acc[i+1][j] + acc[i][j+1] - acc[i][j]
     return acc
 
-# Dinamic Programming
+# Dynamic Programming
 #
 #         0 + 0 top_row-1 0 0 0
 #         0 0 * * * * * * * * 0
