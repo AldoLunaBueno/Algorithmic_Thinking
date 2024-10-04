@@ -1,7 +1,9 @@
 import pytest
+import subprocess
 import sys
-import io
-from quality_of_living import main
+
+path_to_script = "quality_of_living.py"
+path_to_test_cases = "test_cases.txt"
 
 def load_test_cases(file_name):
     # Read the file and separate the test cases by '==='
@@ -19,20 +21,22 @@ def load_test_cases(file_name):
     return test_cases
 
 # Load test cases from file
-test_cases = load_test_cases("test_cases.txt")
+test_cases = load_test_cases(path_to_test_cases)
 
 @pytest.mark.parametrize("input_data, expected", test_cases)
-def test_multiple_cases(capsys: pytest.CaptureFixture[str], input_data, expected):
-    _test_from_data(capsys, input_data, expected)
+def test_multiple_cases(input_data, expected):
+    _test_from_data(input_data, expected)
 
-def _test_from_data(capsys: pytest.CaptureFixture[str], input_data, expected):
-    # Sets standard input (sys.stdin)
-    sys.stdin = io.StringIO(input_data)
-    
-    main() # method to be tested
-
-    # Capture the output
-    out, err = capsys.readouterr()
+def _test_from_data(input_data, expected):
+    # Run the script as a subprocess, pass input and get result
+    result = subprocess.run(
+        [sys.executable, # get the current Python interpreter
+         path_to_script],
+        input=input_data,
+        text=True,
+        capture_output=True
+    )
+    out = result.stdout.strip()
     
     # Compare the output with the expected result
-    assert out.strip() == expected
+    assert out == expected
