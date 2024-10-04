@@ -1,7 +1,7 @@
 # Caps and Bottles (Bottle Caps)
 # DMOJ problem cco09p4
 
-from algorithms.brute_force import solve
+from algorithms.divide_and_conquer import solve
 
 
 def main():
