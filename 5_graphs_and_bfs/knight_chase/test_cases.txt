@@ -19,6 +19,16 @@ Loss in 1 knight move(s).
 Win in 3 knight move(s).
 ===
 1
+5
+3
+1
+1
+5
+3
+---
+Win in 3 knight move(s).
+===
+1
 30
 30
 15
@@ -26,7 +36,7 @@ Win in 3 knight move(s).
 16
 15
 ---
-Stalemate in 0 knight move(s)
+Stalemate in 0 knight move(s).
 ===
 3
 99
