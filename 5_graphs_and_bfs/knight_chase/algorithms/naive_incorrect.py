@@ -15,7 +15,6 @@ def _solve_by_dp_plus_bfs(r, c, pr, pc, kr, kc):
     if kc == pc and kr == pr + 1:
         return tie(0)
     
-    # dynamic programming and bfs
     board = fill_min_board(r, c, kr, kc)
     
     for j in range(1, r-pr+1):
@@ -31,6 +30,7 @@ def _solve_by_dp_plus_bfs(r, c, pr, pc, kr, kc):
     
     return loss(r-pr-1)
 
+# bfs (like dynamic programming)
 def fill_min_board(r, c, kr, kc):
     N = r * c
     board = [[N]*(r+1) for _ in range(c+1)]
