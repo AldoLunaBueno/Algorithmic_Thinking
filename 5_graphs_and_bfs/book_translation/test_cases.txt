@@ -1,0 +1,26 @@
+4 6
+Pashto French Amheric Swedish
+English Pashto 1
+English French 1
+English Amheric 5
+Pashto Amheric 1
+Amheric Swedish 5
+French Swedish 1
+---
+8
+===
+2 1
+A B
+English B 1
+---
+Impossible
+===
+3 5
+Spanish Bengali Italian
+English Spanish 500
+Spanish Bengali 1800
+English Italian 1000
+Spanish Italian 250
+Bengali Italian 9000
+---
+3300
