@@ -1,8 +1,10 @@
-from algorithms.my_way import solve
+# Book Translation (Lost in Translation)
+# DMOJ problem ecna16d
+
 from collections import defaultdict
 from typing import Dict, List
 
-
+from algorithms.my_way import solve
 
 def main():
     n, m, translations = get_data()

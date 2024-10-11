@@ -1,17 +1,17 @@
-4 6
-Pashto French Amheric Swedish
-English Pashto 1
-English French 1
-English Amheric 5
-Pashto Amheric 1
-Amheric Swedish 5
-French Swedish 1
----
-8
-===
 2 1
 A B
 English B 1
+---
+Impossible
+===
+7 6
+A B C D E F G
+English C 1
+English B 1
+C B 1
+B E 1
+A D 1
+F G 1
 ---
 Impossible
 ===
@@ -24,3 +24,29 @@ Spanish Italian 250
 Bengali Italian 9000
 ---
 3300
+===
+4 6
+Pashto French Amheric Swedish
+English Pashto 1
+English French 1
+English Amheric 5
+Pashto Amheric 1
+Amheric Swedish 5
+French Swedish 1
+---
+8
+===
+7 10
+A B C D E F G
+English A 1
+English B 2
+English C 1
+English G 10
+A B 1
+A D 3
+B E 4
+C E 1
+E G 2
+E F 2
+---
+20
