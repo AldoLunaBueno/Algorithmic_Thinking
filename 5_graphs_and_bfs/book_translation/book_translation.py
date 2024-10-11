@@ -1,9 +1,6 @@
 # Book Translation (Lost in Translation)
 # DMOJ problem ecna16d
 
-from collections import defaultdict
-from typing import Dict, List
-
 from algorithms.my_way import solve
 
 def main():
@@ -17,7 +14,7 @@ def get_data():
     langs_to_int = {lang:i for i, lang in enumerate(langs)}
 
     # adjacency matrix
-    translations: Dict[int, List[int]] = defaultdict(list)
+    translations = [[] for _ in range(n+1)]
     for _ in range(m):
         lang_1_str, lang_2_str, cost = input().split(" ")
         cost = int(cost)
