@@ -14,25 +14,35 @@ def solve(cases: List):
 def _dijkstra(n: int, e: int, edges: List[Tuple[int]]):
     done = [False]*(n+1)
     done[e] = True
-    min_distances = [-1]*(n+1)
+    min_distances = [-1]*(n+1) # using a path whose other nodes are all done!
     min_distances[e] = 0
     curr_done = [e]
     for _ in range(n):
-        min_weight = float("Inf")
-        min_from_node = None
-        min_to_node = None
+        min_dist = float("Inf")
+        
+        found = False
         for from_node in curr_done:
             for to_node, weight in edges[from_node]:
                 if done[to_node]:
                     continue
-                if weight < min_weight:
-                    min_weight = weight
-                    min_from_node = from_node
+
+                if min_distances[to_node] == -1 or min_distances[from_node] + weight < min_distances[to_node]:
+                    min_distances[to_node] = min_distances[from_node] + weight
+                
+                if min_distances[to_node] < min_dist:
+                    min_dist = min_distances[to_node]
                     min_to_node = to_node
-        if min_to_node is None:
+                    found = True
+
+                # WRONG!
+                # if weight < min_weight:
+                #     min_weight = weight
+                #     min_from_node = from_node
+                #     min_to_node = to_node
+
+        if not found:
             break
         done[min_to_node] = True
-        min_distances[min_to_node] = min_distances[min_from_node] + min_weight
         curr_done.append(min_to_node)
     return min_distances
 
