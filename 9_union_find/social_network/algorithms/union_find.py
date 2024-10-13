@@ -29,14 +29,19 @@ def solve(n: int, m: int, q: List[Tuple]):
     network = UnionFind(n+1)
     for command, *args in q:
         if command == "A":
-            add(network, *args)
+            add(network, *args, m)
         elif command == "E":
             print(examine(network, *args))
         elif command == "S":
             print(size(network, *args))
 
-def add(network: UnionFind, person_1: int, person_2: int):
-    network.union(person_1, person_2)
+def add(network: UnionFind, person_1: int, person_2: int, limit_size: int):
+    root_1 = network.find(person_1)
+    root_2 = network.find(person_2)
+    if root_1 == root_2:
+        return
+    if network.size(root_1) + network.size(root_2)  <= limit_size:
+        network.union(root_1, root_2)
 
 def examine(network: UnionFind, person_1: int, person_2: int) -> bool:
     return "Yes" if (network.find(person_1) == network.find(person_2)) else "No"
