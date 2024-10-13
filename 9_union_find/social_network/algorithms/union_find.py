@@ -1,3 +1,6 @@
+# Time: 1.30s	
+# Mem: 24M
+
 from typing import List, Tuple
 
 class UnionFind:
