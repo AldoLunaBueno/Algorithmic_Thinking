@@ -9,8 +9,8 @@ class UnionFind:
         self._sizes = [1] * num_nodes
 
     def union(self, node_1: int, node_2: int):
-        root_1 = self.find(self.find(node_1))
-        root_2 = self.find(self.find(node_2))
+        root_1 = self.find(node_1)
+        root_2 = self.find(node_2)
         if root_1 == root_2:
             return
         self._parent[root_1] = root_2 # root_2 is parent of root_1
