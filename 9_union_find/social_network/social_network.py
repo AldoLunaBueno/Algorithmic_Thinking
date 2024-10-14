@@ -1,8 +1,7 @@
 # Social Network Community
 # SPOJ problem SOCNETC
 
-from algorithms.union_find import solve
-
+from algorithms.union_find_optimized import solve
 
 def main():
     n, m, q = get_data()
@@ -20,4 +19,3 @@ def get_data():
 
 if __name__ == "__main__":
     main()
-
