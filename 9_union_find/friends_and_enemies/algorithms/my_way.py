@@ -71,18 +71,12 @@ class War:
     def are_friends(self, person_1, person_2):
         country_1 = self._dsu.find(person_1)
         country_2 = self._dsu.find(person_2)
-        if country_1 == country_2:
-            return 1
-        else:
-            return 0
+        return 1 if country_1 == country_2 else 0
 
     def are_enemies(self, person_1, person_2):
         country_1 = self._dsu.find(person_1)
         country_2 = self._dsu.find(person_2)
-        if self._enemy_of[country_1] == country_2:
-            return 1
-        else:
-            return 0
+        return 1 if self._enemy_of[country_1] == country_2 else 0
 
 class UnionFind:
     """
@@ -96,7 +90,7 @@ class UnionFind:
         root_1 = self.find(node_1)
         root_2 = self.find(node_2)
         if root_1 == root_2:
-            return
+            return root_1
         # union by size
         if self.size(root_1) < self.size(root_2):
             root_1, root_2 = root_2, root_1 # root_1 subset is bigger 

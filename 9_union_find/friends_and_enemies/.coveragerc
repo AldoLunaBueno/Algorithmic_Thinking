@@ -1,0 +1,12 @@
+[run]
+branch = True
+parallel = True
+
+[paths]
+source =
+    friends_and_enemies
+    algorithms
+
+[report]
+omit =
+    tests/*
