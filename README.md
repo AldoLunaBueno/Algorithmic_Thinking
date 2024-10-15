@@ -74,3 +74,5 @@ nodes = sorted(nodes, key = lambda node: node.score, reverse=True)
 
 
 all_data = stdin.read().split('\n')
+
+Code coverage for friends and enemies fail
